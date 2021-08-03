@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import accounting from "accounting";
+import "./Product.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1rem",
   },
   media: {
-    height: 0,
+    height: "50px",
     paddingTop: "56.25%", // 16:9
+    backgroundSize: "contain",
   },
   expand: {
     transform: "rotate(0deg)",
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Product() {
+export default function Product(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -53,20 +55,20 @@ export default function Product() {
             variant="h5"
             color="textSecondary"
           >
-            {accounting.formatMoney(50)}
+            {accounting.formatMoney(props.price)}
           </Typography>
         }
-        title="Shoes"
+        title={props.title}
         subheader="In Stock"
       />
       <CardMedia
         className={classes.media}
-        image="https://assets.adidas.com/images/w_600,f_auto,q_auto/7e03ecef81a64126bcecab58011051d8_9366/Zapatillas_Superstar_Bold_Mujer_Blanco_FV3336_01_standard.jpg"
-        title="Adidas Superstar"
+        image={props.image}
+        title={props.title}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          Urban shoes
+          {props.category}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -91,7 +93,7 @@ export default function Product() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>"Zapatillas urbanas"</Typography>
+          <Typography paragraph>{props.description}</Typography>
         </CardContent>
       </Collapse>
     </Card>

@@ -1,5 +1,4 @@
 import "./App.css";
-import Product from "./components/Product";
 import NavBar from "./components/NavBar";
 import Products from "./components/Products";
 
@@ -8,7 +7,6 @@ function App() {
     <div className="App">
       <NavBar></NavBar>
       <Products></Products>
-      {/* <Product></Product> */}
     </div>
   );
 }
