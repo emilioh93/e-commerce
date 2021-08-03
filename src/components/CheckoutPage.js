@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import CheckoutCard from "./CheckoutCard";
-import Product from "./Product";
+import Total from "./Total";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +33,7 @@ const CheckoutPage = () => {
           products.map((product) => {
             return (
               <Grid key={product.id} item xs={12} sm={8} md={6} lg={4}>
-                <Product
+                <CheckoutCard
                   key={product.id}
                   id={product.id}
                   title={product.title}
@@ -62,7 +62,7 @@ const CheckoutPage = () => {
         </Grid>
         <Grid items xs={12} sm={4} md={3}>
           <Typography align="center" gutterBottom variant="h4">
-            Total
+            <Total></Total>
           </Typography>
         </Grid>
       </Grid>

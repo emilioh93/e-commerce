@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <NavBar></NavBar>
-      <CheckoutPage></CheckoutPage>
-      {/* <CheckoutCard></CheckoutCard>
-      <Products></Products> */}
+      {/* <CheckoutPage></CheckoutPage> */}
+      {/* <CheckoutCard></CheckoutCard> */}
+      <Products></Products>
     </div>
   );
 }
