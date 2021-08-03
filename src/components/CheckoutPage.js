@@ -15,14 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CheckoutPage = () => {
   const classes = useStyles();
-  const [products, setProducts] = useState([]);
   const [{ basket }, dispatch] = useStateValue();
-
-  const getProducts = () => {
-    fetch("https://fakestoreapi.com/products/")
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
-  };
 
   useEffect(() => {
     FormRow();

@@ -13,6 +13,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import accounting from "accounting";
 import "./Product.css";
+import { actionTypes } from "../reducer";
+import { useStateValue } from "../StateProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,11 +42,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CheckoutCard(props) {
   const classes = useStyles();
+  const [{ basket }, dispatch] = useStateValue();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const removeItem = () => dispatch({
+    type: actionTypes.REMOVE_ITEM,
+    id: props.id,
+  });
 
   return (
     <Card className={classes.root}>
@@ -73,7 +81,7 @@ export default function CheckoutCard(props) {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="Add to Cart">
-          <DeleteIcon fontSize="large" />
+          <DeleteIcon fontSize="large" onClick={removeItem} />
         </IconButton>
         {Array(4)
           .fill()
