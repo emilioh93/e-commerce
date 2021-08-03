@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import CheckoutCard from "./CheckoutCard";
 import Total from "./Total";
+import { useStateValue } from "../StateProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 const CheckoutPage = () => {
   const classes = useStyles();
   const [products, setProducts] = useState([]);
+  const [{ basket }, dispatch] = useStateValue();
 
   const getProducts = () => {
     fetch("https://fakestoreapi.com/products/")
@@ -23,28 +25,27 @@ const CheckoutPage = () => {
   };
 
   useEffect(() => {
-    getProducts();
+    FormRow();
   }, []);
 
   function FormRow() {
     return (
       <React.Fragment>
-        {products &&
-          products.map((product) => {
-            return (
-              <Grid key={product.id} item xs={12} sm={8} md={6} lg={4}>
-                <CheckoutCard
-                  key={product.id}
-                  id={product.id}
-                  title={product.title}
-                  category={product.category}
-                  description={product.description}
-                  image={product.image}
-                  price={product.price}
-                />
-              </Grid>
-            );
-          })}
+        {basket?.map((item) => {
+          return (
+            <Grid key={item.id} item xs={12} sm={8} md={6} lg={4}>
+              <CheckoutCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                category={item.category}
+                description={item.description}
+                image={item.image}
+                price={item.price}
+              />
+            </Grid>
+          );
+        })}
       </React.Fragment>
     );
   }
