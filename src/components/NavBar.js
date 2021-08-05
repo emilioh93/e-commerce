@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     color: "#fff",
+    textDecoration: "none",
   },
 }));
 
@@ -57,9 +58,11 @@ export default function NavBar() {
             Hello Guest
           </Typography>
           <div className={classes.button}>
-            <Button variant="outlined" color="inherit">
-              <strong>Sign In</strong>
-            </Button>
+            <Link to="/signin" className={classes.link}>
+              <Button variant="outlined" color="inherit">
+                <strong>Sign In</strong>
+              </Button>
+            </Link>
             <Link to="/checkout" className={classes.link}>
               <IconButton aria-label="show cart item" color="inherit">
                 <Badge badgeContent={basket?.length} color="secondary">
