@@ -1,7 +1,7 @@
 import React from "react";
 import accounting from "accounting";
 import { Button, makeStyles } from "@material-ui/core";
-import {getBasketTotal} from "../reducer";
+import { getBasketTotal } from "../reducer";
 import { useStateValue } from "../StateProvider";
 
 const useStyles = makeStyles((theme) => ({

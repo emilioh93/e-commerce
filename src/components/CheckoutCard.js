@@ -40,7 +40,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CheckoutCard(props) {
+export default function CheckoutCard({
+  id,
+  title,
+  category,
+  description,
+  image,
+  price,
+}) {
   const classes = useStyles();
   const [{ basket }, dispatch] = useStateValue();
   const [expanded, setExpanded] = React.useState(false);
@@ -49,10 +56,11 @@ export default function CheckoutCard(props) {
     setExpanded(!expanded);
   };
 
-  const removeItem = () => dispatch({
-    type: actionTypes.REMOVE_ITEM,
-    id: props.id,
-  });
+  const removeItem = () =>
+    dispatch({
+      type: actionTypes.REMOVE_ITEM,
+      id,
+    });
 
   return (
     <Card className={classes.root}>
@@ -63,20 +71,16 @@ export default function CheckoutCard(props) {
             variant="h5"
             color="textSecondary"
           >
-            {accounting.formatMoney(props.price)}
+            {accounting.formatMoney(price)}
           </Typography>
         }
-        title={props.title}
+        title={title}
         subheader="In Stock"
       />
-      <CardMedia
-        className={classes.media}
-        image={props.image}
-        title={props.title}
-      />
+      <CardMedia className={classes.media} image={image} title={title} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.category}
+          {category}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -101,7 +105,7 @@ export default function CheckoutCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{props.description}</Typography>
+          <Typography paragraph>{description}</Typography>
         </CardContent>
       </Collapse>
     </Card>

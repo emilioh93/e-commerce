@@ -40,7 +40,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Product(props) {
+export default function Product({
+  id,
+  title,
+  category,
+  description,
+  image,
+  price,
+}) {
   const classes = useStyles();
   const [{ basket }, dispatch] = useStateValue();
   const [expanded, setExpanded] = React.useState(false);
@@ -53,12 +60,12 @@ export default function Product(props) {
     dispatch({
       type: actionTypes.ADD_TO_BASKET,
       item: {
-        id: props.id,
-        title: props.title,
-        category: props.category,
-        description: props.description,
-        image: props.image,
-        price: props.price,
+        id,
+        title,
+        category,
+        description,
+        image,
+        price,
       },
     });
   };
@@ -72,20 +79,16 @@ export default function Product(props) {
             variant="h5"
             color="textSecondary"
           >
-            {accounting.formatMoney(props.price)}
+            {accounting.formatMoney(price)}
           </Typography>
         }
-        title={props.title}
+        title={title}
         subheader="In Stock"
       />
-      <CardMedia
-        className={classes.media}
-        image={props.image}
-        title={props.title}
-      />
+      <CardMedia className={classes.media} image={image} title={title} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.category}
+          {category}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -110,7 +113,7 @@ export default function Product(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{props.description}</Typography>
+          <Typography paragraph>{description}</Typography>
         </CardContent>
       </Collapse>
     </Card>
