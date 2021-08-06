@@ -1,8 +1,9 @@
 import React from "react";
 import accounting from "accounting";
-import { Button, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import { getBasketTotal } from "../reducer";
 import { useStateValue } from "../StateProvider";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,8 +13,17 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     height: "20vh",
   },
-  button: {
+  link: {
     marginTop: "2rem",
+    textDecoration: "none",
+    fontSize: "25px",
+    backgroundColor: "#d81b60",
+    borderRadius: "28px",
+    border: "1px solid #ec407a",
+    cursor: "pointer",
+    display: "inline-block",
+    padding: "16px 31px",
+    color: "#fff"
   },
 }));
 
@@ -25,9 +35,14 @@ const Total = () => {
     <div className={classes.root}>
       <h5>Total items: {basket?.length}</h5>
       <h5>{accounting.formatMoney(getBasketTotal(basket))}</h5>
-      <Button className={classes.button} variant="contained" color="secondary">
+      <Link
+        to="/checkout-payment"
+        className={classes.link}
+        variant="contained"
+        color="secondary"
+      >
         Check Out
-      </Button>
+      </Link>
     </div>
   );
 };
